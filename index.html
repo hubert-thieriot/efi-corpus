@@ -5,12 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     <script>
-        // Preserve the current path and search params when redirecting
-        const currentPath = window.location.pathname.replace('/efi-corpus', '');
-        const currentSearch = window.location.search;
-        const currentHash = window.location.hash;
-        const newUrl = 'https://hubert-thieriot.github.io/effective-advocacy-project' + currentPath + currentSearch + currentHash;
-        window.location.replace(newUrl);
+        // Build the new URL preserving the current path, search params, and hash
+        function buildNewUrl() {
+            const oldBase = '/efi-corpus';
+            let currentPath = window.location.pathname;
+            
+            // Remove old base path if present
+            if (currentPath.startsWith(oldBase)) {
+                currentPath = currentPath.substring(oldBase.length);
+            }
+            
+            return 'https://hubert-thieriot.github.io/effective-advocacy-project' + 
+                   currentPath + window.location.search + window.location.hash;
+        }
+        
+        // Perform the redirect
+        window.location.replace(buildNewUrl());
     </script>
 </head>
 <body>
@@ -18,11 +28,7 @@
     <p>If you are not redirected automatically, please click the link above.</p>
     <script>
         // Update fallback link to include current path
-        const fallbackLink = document.getElementById('fallback-link');
-        const currentPath = window.location.pathname.replace('/efi-corpus', '');
-        const currentSearch = window.location.search;
-        const currentHash = window.location.hash;
-        fallbackLink.href = 'https://hubert-thieriot.github.io/effective-advocacy-project' + currentPath + currentSearch + currentHash;
+        document.getElementById('fallback-link').href = buildNewUrl();
     </script>
 </body>
 </html>
