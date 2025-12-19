@@ -3,14 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=https://hubert-thieriot.github.io/effective-advocacy-project">
     <title>Redirecting...</title>
     <script>
-        window.location.href = "https://hubert-thieriot.github.io/effective-advocacy-project";
+        // Preserve the current path and search params when redirecting
+        const currentPath = window.location.pathname.replace('/efi-corpus', '');
+        const currentSearch = window.location.search;
+        const currentHash = window.location.hash;
+        const newUrl = 'https://hubert-thieriot.github.io/effective-advocacy-project' + currentPath + currentSearch + currentHash;
+        window.location.replace(newUrl);
     </script>
 </head>
 <body>
-    <p>Redirecting to <a href="https://hubert-thieriot.github.io/effective-advocacy-project">Effective Advocacy Project</a>...</p>
+    <p>Redirecting to <a href="https://hubert-thieriot.github.io/effective-advocacy-project" id="fallback-link">Effective Advocacy Project</a>...</p>
     <p>If you are not redirected automatically, please click the link above.</p>
+    <script>
+        // Update fallback link to include current path
+        const fallbackLink = document.getElementById('fallback-link');
+        const currentPath = window.location.pathname.replace('/efi-corpus', '');
+        const currentSearch = window.location.search;
+        const currentHash = window.location.hash;
+        fallbackLink.href = 'https://hubert-thieriot.github.io/effective-advocacy-project' + currentPath + currentSearch + currentHash;
+    </script>
 </body>
 </html>
