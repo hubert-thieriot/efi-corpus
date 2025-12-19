@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        // Build the new URL preserving the current path, search params, and hash
+        function buildNewUrl() {
+            const oldBase = '/efi-corpus';
+            let currentPath = window.location.pathname;
+            
+            // Remove old base path if present
+            if (currentPath.startsWith(oldBase)) {
+                currentPath = currentPath.substring(oldBase.length);
+            }
+            
+            return 'https://hubert-thieriot.github.io/effective-advocacy-project' + 
+                   currentPath + window.location.search + window.location.hash;
+        }
+        
+        // Perform the redirect
+        window.location.replace(buildNewUrl());
+    </script>
+</head>
+<body>
+    <p>Redirecting to <a href="https://hubert-thieriot.github.io/effective-advocacy-project" id="fallback-link">Effective Advocacy Project</a>...</p>
+    <p>If you are not redirected automatically, please click the link above.</p>
+    <script>
+        // Update fallback link to include current path
+        document.getElementById('fallback-link').href = buildNewUrl();
+    </script>
+</body>
+</html>
